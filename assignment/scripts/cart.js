@@ -37,8 +37,7 @@ console.log(listItems(basket));
 // Create a function called empty. It should:
     // reset the basket to an empty array
 function empty(array_to_empty){
-    const array_to_empty = []
-    let basket = array_to_empty
+    
     return basket
 }
 
