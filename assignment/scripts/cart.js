@@ -14,29 +14,25 @@ console.log('The max items in your basket is', maxItems);
     // return true indicating the item was added
 function addItem(item){
     console.log('--- addItem ---');
-    console.log(isFull(basket));
-    if (isFull === true) {
-        return `${false}: Your basket is full, [${item}] was NOT added`
+    if (isFull(basket) === true) {
+        return `${false} - ${item} was NOT added to cart`
     }
     basket.push(item)
-    return `${true}: [${item}] was added to the basket`
+    return `${true} - ${item} was added to cart`
 }
 
-console.log(addItem('socks'));
-console.log(addItem('t-shirt'));
-console.log(addItem(1));
-basket_removed = basket.pop();
-console.log('Oops, that not an item. Removed', basket_removed, 'from basket.');
-console.log(addItem('shorts'));
+console.log('addItem - Expected true:',addItem('socks'));
+console.log('addItem - Expected true:',addItem('shirt'));
+console.log('addItem - Expected true:',addItem('shorts'));
 console.log('Your basket now contains: ['+basket+']');
 
 // Create a function called listItems. It should:
     // loop over the items in the basket array
     // console.log each individual item on a new line
-function listItems(basket){
+function listItems(array){
     console.log('--- listItems ---');
-    for (let i = 0; i < basket.length; i++) {
-        let items_in_basket = basket[i]
+    for (let i = 0; i < array.length; i++) {
+        let items_in_basket = array[i]
         console.log(items_in_basket);
     }
     return `The above items are in your basket`
@@ -46,14 +42,14 @@ console.log(listItems(basket));
 
 // Create a function called empty. It should:
     // reset the basket to an empty array
-function empty(basket){
+function empty(array){
     console.log('--- empty ---');
-    basket.length = 0
+    array.length = 0
     return basket
 }
 
 console.log('You have emptied your basket of all contents. Your basket is now:', empty(basket));
-console.log(basket);
+console.log('Your basket contains:', basket);
 
 
 // Stretch Goals
@@ -70,13 +66,11 @@ moved to start of codeblock to try stretch goal of changing addItem to reference
 // Create a function called isFull(). It should:
     // return false if the basket contains less than max number of items
     // return true otherwise (equal or more than maxItems)
-
-function isFull(basket){
-    console.log('--- isFull ---');
-    if (basket.length < maxItems){
-        return `${false}, your basket is NOT full`
+function isFull(array){
+    if (array.length < maxItems){
+        return false
     }
-    return `${true}, your basket IS full`
+    return true
 }
 
 console.log(addItem('jeans'));
@@ -104,19 +98,21 @@ console.log('isFull - Expected true:',isFull(basket), basket);
     // Use Array.indexOf to find the index of the first matching item in the basket.
     // Use Array.splice to remove the first matching item from the basket.
     // Return the item removed or null if the item was not found
+console.log('--- removeItem ---');
+
 function removeItem(item_to_remove){
-    console.log('--- removeItem ---');
-    for (let i = 0; i < basket.length; i++) {
-        if (basket[i] === item_to_remove){
-            basket.splice[i,1]
-            return `${item_to_remove} has been removed from the basket. Your basket now contains: ${basket}`
-        }
-        else {
-            i++
-        }
+    let basketItem = basket.indexOf(item_to_remove)
+    if (basketItem === -1){
+        return `${null}: ${item_to_remove} was not found in your basket`
     }
-    return `${null} --- ${item_to_remove} was not found. Your basket contains: ${basket}`
+    basket.splice(basketItem, 1)
+    return `${true}: ${item_to_remove} was removed from your basket`
 }
 
-console.log(removeItem('socks'));
-console.log(basket);
+console.log('removeItem - Expected true -', removeItem('socks'));
+console.log('Your basket contains:', basket);
+console.log('removeItem - Expected true -', removeItem('jeans'));
+console.log('Your basket contains:', basket);
+console.log('removeItem - Expected null -', removeItem('swim-suit'));
+console.log('Your basket contains:', basket);
+
