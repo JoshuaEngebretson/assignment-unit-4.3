@@ -97,3 +97,23 @@ console.log('isFull - Expected true:',isFull(basket), basket);
     // Use Array.indexOf to find the index of the first matching item in the basket.
     // Use Array.splice to remove the first matching item from the basket.
     // Return the item removed or null if the item was not found
+function removeItem(item_to_remove){
+    for (let i = 0; i < basket.length; i++) {
+        if (basket.indexOf(item_to_remove) === basket[i]){
+            basket.splice(i,1)
+            return `${item_to_remove} has been removed from the basket`
+        }
+    }
+    return null
+}
+
+function find( Searching_array, value_to_find ){
+    for (let i=0; i<Searching_array.length; i++) {
+      if (value_to_find === Searching_array[i]) {
+        console.log(value_to_find, 'is a part of', Searching_array, ' at array.length='+ i);
+        return true 
+      } 
+    }
+    console.log(value_to_find, 'is not a part of', Searching_array);
+    return false
+  }
